@@ -424,7 +424,8 @@ app.post('/api/listings', authenticate, upload.array('images', 10), async (req, 
       beds: parseInt(beds),
       amenities: amenities ? amenities.split(',') : [],
       rules: rules ? rules.split(',').map(rule => rule.trim()) : [],
-      images: req.files ? req.files.map(file => `uploads/${file.filename}`) : [],
+// In the POST /api/listings route
+images: req.files ? req.files.map(file => `/uploads/${file.filename}`) : [],
       isApproved: req.user.isOwner // Automatically approve if user is owner
     });
 
